@@ -2,9 +2,9 @@ Flower myFlower1;
 
   
  // int _r1=60;
-  int _petals=7;
-  float _x=width/2;
-  float _y=height/2;
+  int _petals=5;
+  //float _x=width/2;
+  //float _y=height/2;
   int _pc=#FFA000;
 int num = 50;
 int[] x = new int[num];
