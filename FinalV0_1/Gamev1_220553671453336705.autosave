@@ -1,0 +1,44 @@
+ball[] balls = new ball[7];
+int life = 100;
+int score = 0;
+//int playersize = 25;
+
+void setup() {
+  size(1200, 800);
+//for loop creating all the balls through random parameters
+  for (int i = 0; i < balls.length; i++) {
+    balls[i] = new ball(int(random(50, 600)), int(random(50, 500)), int(random(40, 90)), int(random(1, 15)), int(random(1, 15)));
+  }
+}
+
+void draw() {
+  background(200);
+  fill(0);
+  text(score, 50, 40); 
+  textSize(32);
+  text(life, 1100, 40); //making the players score and life visible in the top right and left corner
+
+  fill(255, 0, 0);
+  for (int i = 0; i < balls.length; i++) {
+    balls[i].display(); //displaying the balls
+    balls[i].move(); // making balls move around and bounce 
+    balls[i].checkForCollision(); //checking if mouse position is toouching any of the balls
+  }
+
+  if (life <= 0) {
+    textAlign(CENTER);  
+    textSize(100);
+    text("Game Over", 600, 300); //ending the game 
+  }
+  if (life > 0) {
+    score = frameCount;
+  }
+  if (life <= 0) {
+    textAlign(CENTER);  
+    textSize(75);
+    text("YOUR SCORE IS "+score, 600, 400); //showing the result for the player
+  }
+//fill(0);
+  //ellipse(mouseX,mouseY,playersize,playersize);
+
+}
