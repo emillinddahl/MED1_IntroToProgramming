@@ -1,8 +1,8 @@
 class ball {
   int ballx = 200;
   int bally = 100;
-  int speedX= 3;
-  int speedY= 3;
+  float speedX= 3;
+  float speedY= 3;
   int ballsize = 50;
   int ballincrement = 100;
 
@@ -20,8 +20,21 @@ void checkIfCollision () {
    }
 }
 
+//void faster () {
+  //speedX *=1.2;
+ // speedY *=1.2;
+//}
+
   void increase () {
-    if (score >= 500) {
+    if (score >= 5) {
+     if(speedX <= 6 && speedX >= -6) {
+       speedX *=1.1;
+       if (speedY <= 6 && speedY >= -6) {
+        speedY *=1.1; 
+       }
+   }
+   
+      
      ballsize = ballincrement;
     }
   }
@@ -33,10 +46,16 @@ void checkIfCollision () {
   void display() { 
     ellipse(ballx, bally, ballsize, ballsize); 
 
-    if (ballx+(ballsize/2) > width || ballx-(ballsize/2) < 0) {
+   // if (ballx+(ballsize/2) > width || ballx-(ballsize/2) < 0) {
+     // speedX *= -1;
+   // }
+    //if (bally+(ballsize/2) > height || bally-(ballsize/2) < 0) {
+     // speedY *= -1;
+   // }
+   if (ballx > width || ballx < 0) {
       speedX *= -1;
     }
-    if (bally+(ballsize/2) > height || bally-(ballsize/2) < 0) {
+    if (bally > height || bally < 0) {
       speedY *= -1;
     }
   }

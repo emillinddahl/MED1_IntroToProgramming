@@ -1,62 +1,67 @@
 Timer startTimer;
-ball[] balls = new ball[8];
+ball[] balls = new ball[9];
+ hblock[] hb = new hblock[5];
 int ballsize = 80;
 int life = 100; // players life
 float score = 0; // players score
-int speed = 8; // initial speed for each ball object
+
+int speed = 4; // initial speed for each ball object
 int level = 1; // test to see if i can increase difficulty over time
-boolean front = true; //making a start page 
-boolean clickit = false; 
+boolean front = true; //making a start page
+boolean clickit = false; //checking if mouse is at button position
 
 
 void setup() {
   size(1200, 800);
   startTimer = new Timer(0); // instantiating Timer class
-  for (int i=0; i< balls.length; i++) { 
-    balls[i] = new ball(int(random(50, 1150)), int(random(50, 750)), ballsize, speed, speed); // a for loop creating all 8 ball objects.
+  for (int i=0; i< balls.length; i++) {
+    balls[i] = new ball(int(random(40, 1160)), int(random(40, 760)), ballsize, speed, speed); // a for loop creating all 8 ball objects.
   }
 }
 void draw() {
   background(200);
   if (life > 0) { // ending game when player dies - displaying players score
     if (front == false) {
-    score = startTimer.getTime();
-    startTimer.countUp();
-    
-  }
+      score = startTimer.getTime();
+      startTimer.countUp();
+    }
   }
 
-if (front == true) {
-  noFill();
-  rect(400,200,400,100);
-  fill(0);
-  text("NEW GAME",510,260);
-  
-}
-  
-  
+  if (front == true) {
+    noFill();
+    rect(400, 200, 400, 100);
+    fill(0);
+    text("NEW GAME", 510, 260);
+  }
+
+
   textSize(32);
   // text(score, 50, 40);
 
   fill(255, 0, 0);
-  if (front == false) { 
+  if (front == false) {
     for (int i=0; i< balls.length; i++) {
       balls[i].display();
       balls[i].move();
       balls[i].checkIfCollision();
       balls[i].increase();
     }
+   
+   for(int i = 0; i>hb.length;i++) {
+    hb[i].display();
+    hb[i].move();
+    
     fill(0);
     text(startTimer.getTime(), 50, 60);
     println(life);
     text(life, 1100, 40);
     fill(0);
-   // noStroke();
+    // noStroke();
     ellipse(mouseX, mouseY, ballsize/2, ballsize/2);
   }
 
   if (life <= 0) {
-    textAlign(CENTER);  
+    textAlign(CENTER);
     textSize(50);
     text("Game Over", 600, 300);
     textSize(75);
@@ -64,9 +69,8 @@ if (front == true) {
   }
   if (front == true && mouseX >=400 && mouseX <=800 && mouseY >= 200 && mouseY <= 300) {
 
-   clickit = true;
-}
-  
+    clickit = true;
+  }
 }
 
 
@@ -79,11 +83,13 @@ void mouseClicked() {
 
 /*
 Todo;  ?
-increment speed with an if statement setting the max speed?
-
-lvl modus?
-
-The requirements for the miniproject are:
+ increment speed with an if statement setting the max speed? seems to wooork however,
+ needed to remove the +ballsize/2 on if statement, 
+ making  half the circles go outside screen before going the opposite way.  
+ 
+ lvl modus?
+ 
+ The requirements for the miniproject are:
  
  Design and implement your own application which fulfills the following requirements:
  
