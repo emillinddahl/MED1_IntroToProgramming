@@ -16,7 +16,7 @@ class ball {
 
 void checkIfCollision () {
    if (dist(mouseX, mouseY, ballx, bally) < 80) {
-      life-=1;
+      life-=0.4;
    }
 }
 

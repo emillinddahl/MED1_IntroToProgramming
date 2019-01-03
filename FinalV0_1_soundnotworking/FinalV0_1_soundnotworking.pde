@@ -2,11 +2,13 @@ Timer startTimer;
 ball[] balls = new ball[9];
 hblock[] hb = new hblock[2];
 import processing.sound.*;
-soundFile file;
+//soundFile file;
+
+
 
 //hblock hb = new hblock(100,100,50,50,2,2);
 int ballsize = 80;
-int life = 100; // players life
+float life = 100; // players life
 float score = 0; // players score
 
 int speed = 4; // initial speed for each ball object
@@ -17,6 +19,7 @@ boolean clickit = false; //checking if mouse is at "new game" button position
 
 void setup() {
   size(1200, 800);
+ // file = new soundFile(this,"nice.wav");
   startTimer = new Timer(0); // instantiating Timer class
   for (int i=0; i< balls.length; i++) {
     balls[i] = new ball(int(random(40, 1160)), int(random(40, 760)), ballsize, speed, speed); // a for loop creating all 8 ball objects.
@@ -40,12 +43,15 @@ void draw() {
     fill(0);
     text("NEW GAME", 510, 260);
   }
+  
+  if (score >= 5) {
     for (int i = 0; i<hb.length; i++) {
       fill(0,255,0);
       hb[i].display();
       hb[i].move();
+      hb[i].ifCollision();
     }
-
+  }
   textSize(32);
   // text(score, 50, 40);
 
@@ -69,6 +75,7 @@ void draw() {
     }
 
     if (life <= 0) {
+      //file.play();
       textAlign(CENTER);
       textSize(50);
       text("Game Over", 600, 300);

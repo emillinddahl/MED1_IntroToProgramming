@@ -24,4 +24,10 @@ class hblock {
   void move() {
     hblockX += speedX;
   }
+  
+  void ifCollision () {
+   if (dist(mouseX, mouseY, hblockX, hblockY) < 80) {
+      life+=0.2;
+   }
+  }
 }
