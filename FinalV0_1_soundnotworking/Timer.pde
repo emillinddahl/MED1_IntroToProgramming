@@ -20,3 +20,5 @@ class Timer
     Time += 1/frameRate;
   }
 }
+
+// i got this from this one guy form yourtube.

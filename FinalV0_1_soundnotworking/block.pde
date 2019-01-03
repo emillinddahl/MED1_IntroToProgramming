@@ -26,7 +26,7 @@ class hblock {
   }
   
   void ifCollision () {
-   if (dist(mouseX, mouseY, hblockX, hblockY) < 80) {
+   if (dist(mouseX, mouseY, hblockX, hblockY) < 80 && life!=100) {
       life+=0.2;
    }
   }
