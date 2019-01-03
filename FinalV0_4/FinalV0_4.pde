@@ -4,17 +4,17 @@ SoundFile deadSound;
 ball[] balls = new ball[9];
 hblock[] hb = new hblock[2];
 
-
-
 //hblock hb = new hblock(100,100,50,50,2,2);
 int ballsize = 80;
 float life = 100; // players life
 float score = 0; // players score
 
 int speed = 4; // initial speed for each ball object
-int whatLevel = 1; // test to see if i can increase difficulty over time
+//int whatLevel = 1; // test to see if i can increase difficulty over time
 boolean front = true; //making a start page
 boolean clickit = false; //checking if mouse is at "new game" button position
+boolean end = false;
+boolean clickitend = false;
 
 void setup() {
   
@@ -32,13 +32,8 @@ void setup() {
   }
 }
 void draw() {
+  
   background(#3D51B2);
-  if (life > 0) { // starting the timer and the game
-    if (front == false) {
-      score = startTimer.Time;
-      startTimer.countUp();
-    }
-  }
   //creatig the front page where players click new game
   if (front == true) {
     noFill();
@@ -56,10 +51,10 @@ void draw() {
     }
   }
   textSize(32);
-  // text(score, 50, 40);
-
   fill(255, 0, 0);
-  if (front == false && life > 0) {
+  if (front == false && end == false) {
+     score = startTimer.Time;
+     startTimer.countUp();
     for (int i=0; i< balls.length; i++) {
       balls[i].display();
       balls[i].move();
@@ -67,8 +62,7 @@ void draw() {
       balls[i].increaseBall();
       balls[i].increaseSpeed();
     }
-
- 
+    
     fill(0);
     text(startTimer.getTime(), 50, 60);
     text(life, 1000, 50);
@@ -76,22 +70,33 @@ void draw() {
     // noStroke();
     ellipse(mouseX, mouseY, ballsize/2, ballsize/2); //creating the player ball which is controlled with the mouse.
   }
-
+  
   if (life <= 0) {
+   end = true; 
+  }
+
+  if (end == true) {
+    background(#F74646);
     deadSound.play();
     textAlign(CENTER);
     textSize(50);
     text("Game Over", 600, 300);
     textSize(75);
     text("YOUR SCORE IS "+int(score), 600, 400);
+    noFill();
+    rect(400, 600, 400, 100);
+    fill(0);
+    textSize(50);
+    text("Try Again", 610, 660);
     noLoop();
   }
-  //if statement controlliing when mouse is hovering over the "New Game" button
+  //if statement checking when mouse is hovering over the "New Game" button
   if (front == true && mouseX >=400 && mouseX <=800 && mouseY >= 200 && mouseY <= 300) {
 
     clickit = true;
   }
-
+  
+  
  
 }
 
@@ -100,7 +105,13 @@ void mouseClicked() {
   if (front == true && clickit == true) {
     front = false;
   }
+  if (front == true && clickitend == true) {
+    front = false;
 }
+
+
+  
+}  
 
 
 /*
@@ -130,4 +141,6 @@ Todo;  ?
  Remember to put comments in your code and write a short “readme” (text) file to introduce the user to the functionalities of your program.
  
 end game screen?
+Use green blocks correctly
+
  */
