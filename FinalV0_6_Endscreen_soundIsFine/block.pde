@@ -25,8 +25,11 @@ class hblock {
     hblockX += speedX;
   }
 
+
+  //magic number?
   void ifCollision () {
-    if (dist(mouseX, mouseY, hblockX, hblockY) < 100 && life < 99.8) {
+    int initiallife = 100;
+    if (dist(mouseX, mouseY, hblockX, hblockY) < (hblockW*2) && life < (initiallife-0.02)) {
       life+=0.2;
     }
   }

@@ -21,4 +21,4 @@ class Timer
   }
 }
 
-// i got this from this one guy form youtube -> https://www.youtube.com/watch?v=c8sc_w-g3-A&t=475s
+// i got inspired for this from this one guy form youtube -> https://www.youtube.com/watch?v=c8sc_w-g3-A&t=475s
