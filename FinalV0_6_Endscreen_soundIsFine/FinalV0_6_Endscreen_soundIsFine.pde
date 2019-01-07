@@ -3,7 +3,7 @@ Timer startTimer;
 import processing.sound.*;
 SoundFile deadSound;
 ball[] balls = new ball[9];
-hblock[] hb = new hblock[3];
+Hblock[] hb = new Hblock[3];
 
 int ballsize = 80; //size of balls
 float life = 100; // players life
@@ -31,7 +31,7 @@ void setup() {
   }
   int blockstart = 100;
   for (int i=0; i< hb.length; i++) {
-    hb[i] = new hblock(blockstart, int(random(height)), blocksize, blocksize, blockspeed, blockspeed); //creating the block object.
+    hb[i] = new Hblock(blockstart, int(random(height)), blocksize, blocksize, blockspeed, blockspeed); //creating the block object.
   }
 }
 void draw() {
@@ -56,7 +56,7 @@ void draw() {
     score = startTimer.Time;
     startTimer.countUp();
     image(img, 0, 0);
-    for (int i=0; i< balls.length; i++) {
+    for (int i=0; i< balls.length; i++) { 
       balls[i].display();
       balls[i].move();
       balls[i].checkIfCollision();

@@ -1,4 +1,4 @@
-class hblock {
+class Hblock {
   int hblockX = 700;
   int hblockY = 1000;
   int hblockW = 50;
@@ -7,7 +7,7 @@ class hblock {
   int speedY = 1;
 
 
-  hblock(int tempx, int tempy, int tempW, int tempH, int tempspeedX, int tempspeedY) {
+  Hblock(int tempx, int tempy, int tempW, int tempH, int tempspeedX, int tempspeedY) {
 
     hblockX = tempx;
     hblockY = tempy;
